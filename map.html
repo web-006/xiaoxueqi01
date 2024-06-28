@@ -157,7 +157,28 @@
             	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
             	/* 通过多个阴影位置形成描边效果 */
             }
-            
+
+	    @media (max-width: 768px) {
+            /* 在小屏幕上的样式 */
+            .all {
+                height: auto; /* 或者其他适当的高度 */
+            }
+            .yishu, .text-with-outline {
+                margin: 20px; /* 调整内容区域的外边距 */
+            }
+            .lucai, .sucai, .chuancai, .xiangcai, .huicai, .zhecai, .mincai, .yuecai {
+                width: 100%; /* 让菜系图标占满整行 */
+                text-align: center; /* 居中显示 */
+                margin-bottom: 20px; /* 添加一些底部间距 */
+            }
+            .lucai img, .sucai img, .chuancai img, .xiangcai img, .huicai img, .zhecai img, .mincai img, .yuecai img {
+                margin: 10px auto; /* 在小屏幕上居中显示 */
+                display: block; /* 使图标居中显示 */
+            }
+            .text-with-outline {
+                font-size: 24px; /* 调整文字大小 */
+            }
+        }
 		</style>
 	</head>
 	<body>
