@@ -16,45 +16,16 @@
 			}
 			
 			.all{
-				background-image: url(map.jpg); 
-				height: 100vh;
+				background-image: url(img/流派背景.png);2565px 1259px;
 				width:100%;
-				background-size: cover; /* 确保背景图完整显示 */
-				background-position: center; /* 居中显示 */
+				height:930px;
+				background-size: cover;
 			}
 			a{
 				color:#f3e8d0;
-			    text-decoration:none;
+			        text-decoration:none;
 			}
 
-			.first{
-				float: left;
-				width: 20%;
-				margin-top: 25px;
-				margin-left: 180px;
-			}
-			
-			.second{
-				float: left;
-				width: 20%;
-				margin-top: 25px;
-				margin-left: 60px;	
-			}
-			
-			.third{
-				float: left;
-				width: 20%;
-				margin-top: 25px;
-				margin-left: 60px;
-			}
-			
-			.fourth{
-				float: left;
-				width: 20%;
-				margin-top: 25px;
-				margin-left: 4px;	
-			}
-			
 			.yishu{
 				width:600px;
 				font-size:25px;
@@ -73,97 +44,89 @@
 			
 			}
 			
-			.lucai img{
-            	width:20px;
-            	position: absolute;
-            	margin: 472px 549px;        	
-            }
+		       .lucai img{
+            	   		width:20px;
+            			position: absolute;
+            			margin: 472px 549px;        	
+            		}
             
-            .sucai img{
-            	width:20px;
-            	position:absolute;
-            	margin:520px 598px;	
-            }
+		        .sucai img{
+            			width:20px;
+            			position:absolute;
+            			margin:520px 598px;	
+		        }
+            	
+            		.chuancai img{
+            			width:20px;
+            			position:absolute;
+            			margin:558px 350px;	
+            		}
             
-            .chuancai img{
-            	width:20px;
-            	position:absolute;
-            	margin:558px 350px;	
-            }
+            		.xiangcai img{
+            			width:20px;
+            			position:absolute;
+            			margin:600px 477px;	
+            		}
             
-            .xiangcai img{
-            	width:20px;
-            	position:absolute;
-            	margin:600px 477px;	
-            }
+            		.huicai img{
+            			width:20px;
+            			position:absolute;
+            			margin:550px 538px;	
+           	 	}
             
-            .huicai img{
-            	width:20px;
-            	position:absolute;
-            	margin:550px 538px;	
-            }
+            		.zhecai img{
+            			width:20px;
+            			position:absolute;
+            			margin:590px 633px;	
+            		}
             
-            .zhecai img{
-            	width:20px;
-            	position:absolute;
-            	margin:590px 633px;	
-            }
+            		.mincai img{
+            			width:20px;
+            			position:absolute;
+            			margin:620px 550px;	
+            		}
             
-            .mincai img{
-            	width:20px;
-            	position:absolute;
-            	margin:620px 550px;	
-            }
+           		.yuecai img{
+            			width:20px;
+            			position:absolute;
+            			margin:693px 521px;	
+            		}
             
-            .yuecai img{
-            	width:20px;
-            	position:absolute;
-            	margin:693px 521px;	
-            }
+            		/* 定义闪烁动画 */
+            		@keyframes blink {
+            		0% {
+            			opacity: 1.0;
+            		}
+            		/* 开始时完全可见 */
+            		50% {
+            			opacity: 0.0;
+            		}
+            		/* 中间时隐藏 */
+            		100% {
+            			opacity: 1.0;
+            		}
+            		/* 结束时再次完全可见 */
+           		 }
+            		/* 应用动画到图片 */
+            		.lucai img,
+            		.sucai img,
+            		.chuancai img,
+            		.xiangcai img,
+            		.huicai img,
+            		.zhecai img,
+            		.mincai img,
+           		.yuecai img {
+            		animation: blink 1s infinite;
+            		/* 使用blink动画，1.5秒一次，无限重复 */
+            		}
             
-            /* 定义闪烁动画 */
-            
-            @keyframes blink {
-            	0% {
-            		opacity: 1.0;
-            	}
-            	/* 开始时完全可见 */
-            	50% {
-            		opacity: 0.0;
-            	}
-            	/* 中间时隐藏 */
-            	100% {
-            		opacity: 1.0;
-            	}
-            	/* 结束时再次完全可见 */
-            }
-            /* 应用动画到图片 */
-            
-            .lucai img,
-            .sucai img,
-            .chuancai img,
-            .xiangcai img,
-            .huicai img,
-            .zhecai img,
-            .mincai img,
-            .yuecai img {
-            	animation: blink 1s infinite;
-            	/* 使用blink动画，1.5秒一次，无限重复 */
-            }
-            
-            .text-with-outline {
-            	color: #yourTextColor;
-            	/* 设置文字颜色 */
-            	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-            	/* 通过多个阴影位置形成描边效果 */
-            }
+           		 .text-with-outline {
+            		color: #yourTextColor;
+            		/* 设置文字颜色 */
+            		text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+            		/* 通过多个阴影位置形成描边效果 */
+		        }
 
-	    @media (max-width: 768px) {
-            .all {
-                background-size: contain; /* 在小屏幕上使用contain */
-            }
-        }
-        
 		</style>
 	</head>
 	<body>
