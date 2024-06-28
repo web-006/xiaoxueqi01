@@ -16,10 +16,10 @@
 			}
 			
 			.all{
-				background-image: url(map.jpg); 2600px 1300px;
+				background-image: url(map.jpg); 
 				height: 100vh;
 				width:100%;
-				background-size: contain; /* 确保背景图完整显示 */
+				background-size: cover; /* 确保背景图完整显示 */
 				background-position: center; /* 居中显示 */
 			}
 			a{
@@ -157,7 +157,12 @@
             	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
             	/* 通过多个阴影位置形成描边效果 */
             }
-            
+
+	    @media (max-width: 768px) {
+            .all {
+                background-size: contain; /* 在小屏幕上使用contain */
+            }
+        }
         
 		</style>
 	</head>
