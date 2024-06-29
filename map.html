@@ -37,95 +37,58 @@
 			color: black;
 			position: absolute;
 			top: 22%;
-    		left: 60%;
+			left: 60%;
 			line-height: 38px;
 			font-family: 'ab', cursive;
 		}
 		.biao {
-    		font-size: 70px;
-    		color: #580405;
-    		position: absolute;
-    		top: -10%;
-    		left: 28%;
-    		transform: translate(-60%, -100%);
-		}
-
-		.lucai img {
-			width: 20px;
+			font-size: 70px;
+			color: #580405;
 			position: absolute;
-			top: 51.5%;
-			left: 33.5%;
+			top: -10%;
+			left: 28%;
+			transform: translate(-60%, -100%);
 		}
-		.sucai img {
-			width: 20px;
+		.buttons {
 			position: absolute;
-			top: 57%;
-			left: 36.5%;
-		}
-		.chuancai img {
-			width: 20px;
-			position: absolute;
-			top: 61%;
-			left: 21.5%;
-		}
-		.xiangcai img {
-			width: 20px;
-			position: absolute;
-			top: 65.5%;
-			left: 29%;
-		}
-		.huicai img {
-			width: 20px;
-			position: absolute;
-			top: 60.25%;
-			left: 32.75%;
-		}
-		.zhecai img {
-			width: 20px;
-			position: absolute;
-			top: 65.75%;
-			left: 39.75%;
-		}
-		.mincai img {
-			width: 20px;
-			position: absolute;
-			top: 70.5%;
-			left: 37.5%;
-		}
-		.yuecai img {
-			width: 20px;
-			position: absolute;
-			top: 80.5%;
-			left: 35.75%;
-		}
-		/* 定义闪烁动画 */
-		@keyframes blink {
-			0% {
-				opacity: 1.0;
-			}
-			/* 开始时完全可见 */
+			top: 25%;
+			left: 20px;
+			/* 调整按钮列距离左侧的距离 */
 			
-			50% {
-				opacity: 0.0;
-			}
-			/* 中间时隐藏 */
-			
-			100% {
-				opacity: 1.0;
-			}
-			/* 结束时再次完全可见 */
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			/* 将按钮列左对齐 */
 		}
-		/* 应用动画到图片 */
-		.lucai img,
-		.sucai img,
-		.chuancai img,
-		.xiangcai img,
-		.huicai img,
-		.zhecai img,
-		.mincai img,
-		.yuecai img {
-			animation: blink 1s infinite;
-			/* 使用blink动画，1.5秒一次，无限重复 */
+		.button {
+			display: block;
+			width: 120px;
+			height: 40px;
+			margin-bottom: 15px;
+			text-align: center;
+			line-height: 40px;
+			font-size: 16px;
+			text-decoration: none;
+			color: #333;
+			border: 2px solid #5e4327;
+			/* 深棕色描边 */
+			
+			background-color: #f8e8c4;
+			/* 淡黄色为底色 */
+			
+			border-radius: 6px;
+			/* 圆角 */
+			
+			transition: background-color 0.3s, color 0.3s, transform 0.2s;
+			/* 添加缩放效果 */
+		}
+		.button:hover {
+			background-color: #ffd700;
+			/* 淡黄色悬停效果 */
+			
+			color: #333;
+			transform: scale(1.05);
+			/* 悬停时稍微放大按钮 */
 		}
 		.text-with-outline {
 			color: #yourTextColor;
@@ -140,40 +103,23 @@
 	<body>
 		<div class="yishu">
 			<div class="biao">八大菜系</div>
-			<div>菜系是在选料、切配、烹饪等技艺方面，经长期演变而自成体系，具有鲜明的地方风味特色，并为社会所公认的中国饮食的菜肴流派。 
-				中国饮食文化的菜系，是指在一定区域内，由于气候、地形、历史、物产及饮食风俗的不同，经过漫长历史演变而形成的一整套自成体系的烹饪技艺和风味，并被全国各地所承认的地方菜肴。 
-				早在商周时期中国的膳食文化已有雏形，以太公望最为代表，再到春秋战国的齐桓公时期，饮食文化中南北菜肴风味就表现出差异。 
-				到唐宋时，南食、北食各自形成体系。到了南宋时期，南甜北咸的格局形成。 
-				在清朝初年，川菜、鲁菜、淮扬菜、粤菜，成为当时最有影响的地方菜，被称作四大菜系。 
-				到了清朝末年，浙江菜、闽菜、湘菜、徽菜四大新地方菜系分化形成，共同构成汉民族饮食的“八大菜系”。
+			<div>菜系是在选料、切配、烹饪等技艺方面，经长期演变而自成体系，具有鲜明的地方风味特色，并为社会所公认的中国饮食的菜肴流派。 中国饮食文化的菜系，是指在一定区域内，由于气候、地形、历史、物产及饮食风俗的不同，经过漫长历史演变而形成的一整套自成体系的烹饪技艺和风味，并被全国各地所承认的地方菜肴。 早在商周时期中国的膳食文化已有雏形，以太公望最为代表，再到春秋战国的齐桓公时期，饮食文化中南北菜肴风味就表现出差异。 到唐宋时，南食、北食各自形成体系。到了南宋时期，南甜北咸的格局形成。 在清朝初年，川菜、鲁菜、淮扬菜、粤菜，成为当时最有影响的地方菜，被称作四大菜系。 到了清朝末年，浙江菜、闽菜、湘菜、徽菜四大新地方菜系分化形成，共同构成汉民族饮食的“八大菜系”。
 			</div>
 		</div>
-		<div class="lucai">
-			<a href="鲁菜.html" target="_self"><img src="tubiao.jpg"></a>
+
+		<div class="buttons">
+			<a href="lucai.html" class="button">鲁菜</a>
+			<a href="sucai.html" class="button">苏菜</a>
+			<a href="xiangcai.html" class="button">湘菜</a>
+			<a href="huicai.html" class="button">徽菜</a>
+			<a href="zhecai.html" class="button">浙菜</a>
+			<a href="yuecai.html" class="button">粤菜</a>
+			<a href="mincai.html" class="button">闽菜</a>
+			<a href="chuancai.html" class="button">川菜</a>
 		</div>
-		<div class="sucai">
-			<a href="苏菜.html" target="_self"><img src="tubiao.jpg"></a>
-		</div>
-		<div class="chuancai">
-			<a href="川菜.html" target="_self"><img src="tubiao.jpg"></a>
-		</div>
-		<div class="xiangcai">
-			<a href="湘菜.html" target="_self"><img src="tubiao.jpg"></a>
-		</div>
-		<div class="huicai">
-			<a href="徽菜.html" target="_self"><img src="tubiao.jpg"></a>
-		</div>
-		<div class="zhecai">
-			<a href="浙菜.html" target="_self"><img src="tubiao.jpg"></a>
-		</div>
-		<div class="mincai">
-			<a href="闽菜.html" target="_self"><img src="tubiao.jpg"></a>
-		</div>
-		<div class="yuecai">
-			<a href="粤菜.html" target="_self"><img src="tubiao.jpg"></a>
-		</div>
+
 		<div class="text-with-outline" style="text-align: center; color: #F0E68C; font-size: 40px; position: absolute; bottom: 40px; width: 100%;">
-			请在地图中点击图标，选择你想了解的菜系
+			请点击按钮，选择你想了解的菜系，开启寻味之旅！
 		</div>
 
 	</body>
