@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>寻味之旅：探寻八大菜系</title>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				margin: 0;
+				padding: 0;
+				background-image: url('img/beijing.png');
+				background-size: cover;
+			}
+			
+			.navbar {
+				background-color: #8B4513;
+				overflow: hidden;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				position: fixed;
+				top: 0;
+				width: 100%;
+				z-index: 1000;
+			}
+			
+			.navbar a {
+				color: white;
+				text-align: center;
+				text-decoration: none;
+				padding: 14px 20px;
+				font-size: 17px;
+				opacity: 0.6;
+			}
+			
+			.navbar a.current {
+				opacity: 1;
+				font-weight: bold;
+			}
+			
+			.navbar a:hover {
+				background-color: #A0522D;
+			}
+			
+			.sidebar {
+				background-color: #D2B48C;
+				position: fixed;
+				left: 0;
+				top: 0;
+				width: 100px;
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+			}
+			
+			.sidebar a {
+				color: #fff;
+				text-decoration: none;
+				margin: 10px 0;
+				padding: 10px;
+				border-radius: 5px;
+				opacity: 0.6;
+				transition: opacity 0.3s ease;
+			}
+			
+			.sidebar a:hover {
+				opacity: 1;
+				background-color: #B8860B;
+			}
+			
+			.content {
+				margin-left: 100px;
+				padding: 20px;
+				text-align: left;
+				font-family: Arial, sans-serif;
+				font-size: 16px;
+			}
+			
+			.page {
+				display: none;
+				/* 初始隐藏各个页面 */
+			}
+			
+			.page.active {
+				display: block;
+				/* 显示当前活跃页面 */
+			}
+			
+			.timeline {
+				position: relative;
+				/* 确保timeline容器可以定位其内部元素 */
+			}
+			
+			{
+				font-family: Arial, sans-serif;
+				margin: 0;
+				padding: 0;
+				background-color: #f0f0f0;
+				overflow: hidden;
+			}
+			
+			.game-container {
+				position: relative;
+				width: 600px;
+				height: 600px;
+				border: 2px solid #000;
+				margin: 6% auto;
+				background-image: url('img/migong.jpeg');
+				background-size: cover;
+				background-repeat: no-repeat;
+			}
+			
+			.chef {
+				position: absolute;
+				width: 26px;
+				height: 26px;
+				background-image: url('img/chushi.jpg');
+				background-size: cover;
+				background-position: center;
+			}
+			
+			.ingredient {
+				position: absolute;
+				width: 30px;
+				height: 30px;
+				background-size: cover;
+				background-position: center;
+			}
+			
+			.exit {
+				position: absolute;
+				width: 60px;
+				height: 31px;
+				background-color: #008000;
+				color: #fff;
+				text-align: center;
+				line-height: 30px;
+				cursor: pointer;
+				z-index: 1;
+				top: 25px;
+				left: 530px;
+				/* 根据迷宫尺寸调整位置 */
+			}
+			
+			.exit.red {
+				background-color: #ff0000;
+			}
+			
+			.message {
+				position: absolute;
+				right: 12%;
+				/* 页面右侧的边距 */
+				top: 50%;
+				/* 页面顶部的边距 */
+				transform: translate(-50%, -50%);
+				writing-mode: vertical-rl;
+				/* 设置文字竖排显示，从右到左 */
+				text-orientation: upright;
+				/* 设置文字方向为直立 */
+				font-size: 40px;
+				color: #8B4513;
+				text-shadow: -1px -1px 0 #000, 1px -1px 0 #000;
+			}
+			
+			.message span {
+				color: red;
+				/* `${ingredient.id}` 部分的颜色 */
+				font-size: 65px;
+			}
+			
+			.result-image {
+				display: none;
+				position: fixed;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				z-index: 1000;
+				padding: 20px;
+				border-radius: 10px;
+			}
+			
+			.result-image img {
+				width: 100%;
+				height: auto;
+			}
+			
+			.text1 {
+				position: absolute;
+				top: 50%;
+				left: 10%;
+				transform: translate(-50%, -50%);
+				writing-mode: vertical-rl;
+				/* 设置文字竖排显示，从右到左 */
+				text-orientation: upright;
+				/* 设置文字方向为直立 */
+				font-size: 70px;
+				color: #8B4513;
+				text-shadow: -1px -1px 0 #000, 1px -1px 0 #000;
+			}
+			
+			.text2 {
+				position: absolute;
+				top: 88%;
+				left: 27%;
+				transform: translate(-50%, -50%);
+				font-size: 25px;
+				color: #8B4513;
+				text-shadow: -1px -1px 0 #000, 1px -1px 0 #000;
+			}
+			
+			.text3 {
+				position: absolute;
+				top: 18%;
+				right: 24%;
+				transform: translate(-50%, -50%);
+				font-size: 25px;
+				color: #8B4513;
+				text-shadow: -1px -1px 0 #000, 1px -1px 0 #000;
+			}
+			
+			.text4 {
+				position: absolute;
+				top: 50%;
+				left: 18%;
+				transform: translate(-50%, -50%);
+				writing-mode: vertical-lr;
+				text-orientation: upright;
+				/* 设置文字方向为直立 */
+				font-size: 22px;
+				color: #8B4513;
+				line-height: 1;
+				/* 设置行距 */
+				text-shadow: -0.5px -0.5px 0 #000, 0.5px -0.5px 0 #000;
+				white-space: nowrap;
+				/* 防止文本换行 */
+				height: auto;
+				/* 使高度自适应内容 */
+				width: auto;
+				/* 使宽度自适应内容 */
+			}
+			
+			.collected-message {
+				color: red;
+				/* Set font color to red */
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<!-- 主导航栏 -->
+		<div class="navbar">
+			<a href="map.html">返回</a>
+			<!-- 链接页面 -->
+			<a href="mincai1.html">起源发展</a>
+			<a href="mincai2.html">详细</a>
+			<!-- 链接页面 -->
+			<a href="mincai3.html" class="current">互动小游戏</a>
+			<!-- 链接页面 -->
+		</div>
+
+		<div class="game-container">
+			<div id="chef" class="chef" style="bottom: 27px; left: 0px;"></div>
+			<div id="exit" class="exit">制作</div>
+			<div id="ingredients"></div>
+		</div>
+		<div class="result-image" id="resultImage">
+			<img src="img/fotiaoqiang.png" alt="成品" />
+		</div>
+		<div class="message" id="message"></div>
+
+		<div class="text1">
+			闽菜迷宫
+		</div>
+		<div class="text2">
+			入口
+		</div>
+		<div class="text3">
+			出口
+		</div>
+		<div class="text4">
+			</p>请用方向键控制懒大厨走出迷宫，</p>
+			并收集迷宫内的所有食材，一起制作佛跳墙吧
+		</div>
+
+		<script>
+			let ingredients = [{
+					id: '干贝',
+					src: 'img/min01.png',
+					top: 111,
+					left: 80
+				},
+				{
+					id: '花胶',
+					src: 'img/min02.png',
+					top: 326,
+					left: 218
+				},
+				{
+					id: '鹌鹑蛋',
+					src: 'img/min03.png',
+					top: 435,
+					left: 300
+				},
+				{
+					id: '鸡高汤',
+					src: 'img/min04.png',
+					top: 326,
+					left: 490
+				},
+				{
+					id: '南瓜泥',
+					src: 'img/min05.png',
+					top: 490,
+					left: 437
+				},
+				{
+					id: '鲍鱼',
+					src: 'img/min06.png',
+					top: 108,
+					left: 328
+				},
+				{
+					id: '香菇',
+					src: 'img/min07.png',
+					top: 435,
+					left: 80
+				},
+				{
+					id: '海参',
+					src: 'img/min08.png',
+					top: 244,
+					left: 108
+				},
+			];
+
+			let collected = new Set();
+
+			function createIngredient(ingredient) {
+				let div = document.createElement('div');
+				div.className = 'ingredient';
+				div.id = ingredient.id;
+				div.style.top = ingredient.top + 'px';
+				div.style.left = ingredient.left + 'px';
+				div.style.backgroundImage = `url('${ingredient.src}')`;
+				return div;
+			}
+
+			function initializeGame() {
+				let ingredientsContainer = document.getElementById('ingredients');
+				ingredients.forEach(ingredient => {
+					ingredientsContainer.appendChild(createIngredient(ingredient));
+				});
+
+				document.addEventListener('keydown', moveChef);
+
+				document.getElementById('exit').addEventListener('click', () => {
+					if(collected.size === ingredients.length) {
+						document.getElementById('resultImage').style.display = 'block';
+					} else {
+						document.getElementById('message').innerText = '收集所有食材才能制作!';
+					}
+				});
+			}
+
+			function moveChef(e) {
+				let chef = document.getElementById('chef');
+				let style = window.getComputedStyle(chef);
+				let top = parseInt(style.top);
+				let left = parseInt(style.left);
+				let step = 9; // 每次移动的像素
+
+				switch(e.key) {
+					case 'ArrowUp':
+						if(top - step >= 0) chef.style.top = (top - step) + 'px';
+						break;
+					case 'ArrowDown':
+						if(top + step <= 570) chef.style.top = (top + step) + 'px'; // 570px 是容器高度 - 厨师高度
+						break;
+					case 'ArrowLeft':
+						if(left - step >= 0) chef.style.left = (left - step) + 'px';
+						break;
+					case 'ArrowRight':
+						if(left + step <= 570) chef.style.left = (left + step) + 'px'; // 570px 是容器宽度 - 厨师宽度
+						break;
+				}
+
+				checkCollision();
+			}
+
+			function checkCollision() {
+				let chef = document.getElementById('chef');
+				let chefRect = chef.getBoundingClientRect();
+				let ingredientsContainer = document.getElementById('ingredients');
+				let containerRect = ingredientsContainer.getBoundingClientRect();
+
+				ingredients.forEach(ingredient => {
+					let ing = document.getElementById(ingredient.id);
+					if(!ing) return; // 食材可能已经被移除
+					let ingRect = ing.getBoundingClientRect();
+
+					// 检测碰撞
+					if(chefRect.left < ingRect.right &&
+						chefRect.right > ingRect.left &&
+						chefRect.top < ingRect.bottom &&
+						chefRect.bottom > ingRect.top) {
+
+						if(!collected.has(ingredient.id)) {
+							collected.add(ingredient.id);
+							ing.style.display = 'none'; // 收集到的食材隐藏
+							document.getElementById('message').innerHTML = `已收集 <span>${ingredient.id}</span>`;
+						}
+					}
+				});
+
+				let exit = document.getElementById('exit');
+				let exitRect = exit.getBoundingClientRect();
+				if(chefRect.left < exitRect.right &&
+					chefRect.right > exitRect.left &&
+					chefRect.top < exitRect.bottom &&
+					chefRect.bottom > exitRect.top) {
+					if(collected.size === ingredients.length) {
+						exit.classList.add('red');
+					}
+				}
+			}
+
+			initializeGame();
+		</script>
+
+	</body>
+
+</html>

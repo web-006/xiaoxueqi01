@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>寻味之旅：探寻八大菜系</title>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				margin: 0;
+				padding: 0;
+				background-image: url('img/beijing.png');
+				background-size: cover;
+			}
+			
+			.navbar {
+				background-color: #8B4513;
+				overflow: hidden;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				position: fixed;
+				top: 0;
+				width: 100%;
+				z-index: 1000;
+			}
+			
+			.navbar a {
+				color: white;
+				text-align: center;
+				text-decoration: none;
+				padding: 14px 20px;
+				font-size: 17px;
+				opacity: 0.6;
+			}
+			
+			.navbar a.current {
+				opacity: 1;
+				font-weight: bold;
+			}
+			
+			.navbar a:hover {
+				background-color: #A0522D;
+			}
+			
+			.sidebar {
+				background-color: #D2B48C;
+				position: fixed;
+				left: 0;
+				top: 0;
+				width: 100px;
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+			}
+			
+			.sidebar a {
+				color: #fff;
+				text-decoration: none;
+				margin: 10px 0;
+				padding: 10px;
+				border-radius: 5px;
+				opacity: 0.6;
+				transition: opacity 0.3s ease;
+			}
+			
+			.sidebar a:hover {
+				opacity: 1;
+				background-color: #B8860B;
+			}
+			
+			.content {
+				margin-left: 100px;
+				padding: 20px;
+				text-align: left;
+				font-family: Arial, sans-serif;
+				font-size: 16px;
+			}
+			
+			.page {
+				display: none;
+				/* 初始隐藏各个页面 */
+			}
+			
+			.page.active {
+				display: block;
+				/* 显示当前活跃页面 */
+			}
+			
+			.timeline {
+				position: relative;
+				/* 确保timeline容器可以定位其内部元素 */
+			}
+			
+			.image-container {
+				display: flex;
+				justify-content: center;
+				/* 图片水平居中 */
+				align-items: flex-start;
+				/* 垂直对齐方式，顶部对齐 */
+				margin-top: 100px;
+				/* 调整图片与导航栏之间的间距 */
+			}
+			
+			.image-with-text {
+				max-width: 45%;
+				/* 设置容器的最大宽度 */
+				margin: 0 auto;
+				/* 自动左右居中 */
+			}
+			
+			.image-container img {
+				max-width: 73%;
+				/* 图片最大宽度为容器的100% */
+				max-height: 300px;
+				/* 图片高度最大为300像素 */
+				border-radius: 8px;
+				/* 圆角边框 */
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+				/* 添加阴影效果 */
+			}
+			
+			.image-with-text p {
+				font-size: 21px;
+				/* 设置段落文字大小 */
+				margin-top: 20px;
+				/* 上边距 */
+				color: #555;
+				/* 段落文字颜色 */
+				text-align: left;
+				/* 左对齐 */
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<!-- 主导航栏 -->
+		<div class="navbar">
+			<a href="map.html">返回</a>
+			<!-- 链接页面 -->
+			<a href="zhecai1.html">起源发展</a>
+			<a href="zhecai2.html" class="current">厨师推荐</a>
+			<!-- 链接页面 -->
+			<a href="zhecai3.html">互动小游戏</a>
+			<!-- 链接页面 -->
+		</div>
+
+		<div class="image-container">
+			<div class="image-with-text">
+				<img src="img/zhe2.png" alt="东坡肉">
+				<p>东坡肉又名滚肉，是江南地区汉族传统名菜，属于浙菜系，红得透亮，色如玛瑙，入口软而不烂，肥而不腻。</p>
+				<p>食材：精五花肉800g、香葱1把、姜1大块、黄酒250g、生抽➕清水100➕100、冰糖40g</p>
+				<p>做法：(1)选精五花肉800g，清洗之后切成4厘米左右见方块，然后用棉线从四周捆好</p>
+				<p>(2)取砂锅在锅底刷一层油，码上香葱和姜片，锅底一定要铺满，否则会粘锅</p>
+				<p>(3)肉皮朝下码放好</p>
+				<p>(4)一次性加入黄酒、生抽和冰糖，开火。 锅开后改文火慢炖一个小时，一个小时后把肉翻过来再煲15分钟即可</p>
+
+			</div>
+			<div class="image-with-text">
+				<img src="img/zhe1.jpg" alt="西湖牛肉羹">
+				<p>西湖牛肉羹是浙江省的一道传统名菜，该菜品通常会提前上席作为润喉开胃的羹汤，八百年来深受普通老百姓喜爱。</p>
+				<p>食材牛肉4 两（160克），豆腐花1 盒，葱2 条，芫荽1 棵，牛肉清汤1 罐，盐1/4茶匙，生抽、生粉各2 茶匙，麻油及胡椒粉少许，水及油各1 汤匙</p>
+				<p>(1)牛肉冲净抹干后切碎及剁烂，拌入腌料腌10分钟；葱切丝，芫荽洗净取叶。</p>
+				<p>(2)烧滚半镬水，将剁烂牛肉放入沸水，捞出。</p>
+				<P>(3)把牛肉清汤及1 杯水放入煲内煮滚，加入豆腐花轻轻搅拌，加入牛肉</P>
+				<p>(4)再加入芡汁料、盐、麻油及胡椒粉，撒下芫荽、葱，离火即成。</p>
+
+			</div>
+
+	</body>
+
+</html>

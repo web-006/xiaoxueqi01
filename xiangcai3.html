@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>寻味之旅：探寻八大菜系</title>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				margin: 0;
+				padding: 0;
+				background-image: url('img/beijing.png');
+				background-size: cover;
+			}
+
+			.navbar {
+				background-color: #8B4513;
+				overflow: hidden;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				position: fixed;
+				top: 0;
+				width: 100%;
+				z-index: 1000;
+			}
+
+			.navbar a {
+				color: white;
+				text-align: center;
+				text-decoration: none;
+				padding: 14px 20px;
+				font-size: 17px;
+				opacity: 0.6;
+			}
+
+			.navbar a.current {
+				opacity: 1;
+				font-weight: bold;
+			}
+
+			.navbar a:hover {
+				background-color: #A0522D;
+			}
+
+			.sidebar {
+				background-color: #D2B48C;
+				position: fixed;
+				left: 0;
+				top: 0;
+				width: 100px;
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+			}
+
+			.sidebar a {
+				color: #fff;
+				text-decoration: none;
+				margin: 10px 0;
+				padding: 10px;
+				border-radius: 5px;
+				opacity: 0.6;
+				transition: opacity 0.3s ease;
+			}
+
+			.sidebar a:hover {
+				opacity: 1;
+				background-color: #B8860B;
+			}
+
+			.content {
+				margin-left: 100px;
+				padding: 20px;
+				text-align: left;
+				font-family: Arial, sans-serif;
+				font-size: 16px;
+			}
+
+			.page {
+				display: none;
+				/* 初始隐藏各个页面 */
+			}
+
+			.page.active {
+				display: block;
+				/* 显示当前活跃页面 */
+			}
+
+			.timeline {
+				position: relative;
+				/* 确保timeline容器可以定位其内部元素 */
+			}
+
+
+			body {
+				font-family: Arial, sans-serif;
+				margin: 0;
+				padding: 0;
+				background-color: #f0f0f0;
+			}
+
+			.navbar {
+				background-color: #8B4513;
+				overflow: hidden;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				position: fixed;
+				top: 0;
+				width: 100%;
+				z-index: 1000;
+			}
+
+			.navbar a {
+				color: white;
+				text-align: center;
+				text-decoration: none;
+				padding: 14px 20px;
+				font-size: 17px;
+				opacity: 0.6;
+			}
+
+			.navbar a.current {
+				opacity: 1;
+				font-weight: bold;
+			}
+
+			.navbar a:hover {
+				background-color: #A0522D;
+			}
+
+			.content {
+				margin-top: 60px;
+				padding: 20px;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+			}
+
+			.images {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				margin-bottom: 20px;
+				position: relative;
+				/* 添加相对定位 */
+				width: 90%;
+				/* 可根据需要设置宽度 */
+				height: 370px;
+				/* 可根据需要设置高度 */
+			}
+
+			.images img {
+				width: 180px;
+				height: auto;
+				margin: 10px;
+				cursor: pointer;
+			}
+
+			.names {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				margin-top: 10px;
+			}
+
+			.names div {
+				padding: 20px;
+				margin: 20px;
+				background-color: #F0E68C;
+				border-radius: 5px;
+				cursor: pointer;
+				position: relative;
+			}
+
+			.connector {
+				position: absolute;
+				background-color: green;
+				height: 2px;
+				width: 0;
+				top: 50%;
+				transform: translateY(-50%);
+				transition: width 0.3s ease-out;
+			}
+
+
+			.game-container {
+				position: relative;
+			}
+
+			.title {
+				position: absolute;
+				top: 20px;
+				left: 50%;
+				transform: translateX(-50%);
+				font-size: 60px;
+				color: #8B4513;
+				text-shadow: -1px -1px 0 #000;
+			}
+
+			.instructions {
+				position: absolute;
+				top: 570px;
+				left: 50%;
+				transform: translateX(-50%);
+				font-size: 30px;
+				color: #8B4513;
+				text-shadow: -1px -1px 0 #000;
+			}
+		</style>
+	</head>
+	<body>
+
+		<!-- 主导航栏 -->
+		<div class="navbar">
+			<a href="map.html">返回</a>
+			<a href="xiangcai1.html">起源发展</a>
+			<a href="xiangcai2.html">详细</a>
+			<a href="xiangcai3" class="current">互动小游戏</a>
+		</div>
+
+		<div class="game-container">
+			<div class="title">湘菜连连看</div>
+			<div class="instructions">请将展示的湘菜图片拖动到正确的菜名上进行连接</div>
+			<!-- 这里放置你的湘菜图片与菜名的拖拽匹配游戏的具体内容 -->
+		</div>
+
+		<!-- 游戏内容区域 -->
+		        <div class="content">
+		            <div class="page active" id="game-page">
+		                <div class="images">
+		                    <img src="img/changdemifen.png" id="changdemifen" draggable="true" ondragstart="drag(event)"
+		                        data-img="changdemifen">
+		                    <img src="img/donganziji.png" id="donganziji" draggable="true" ondragstart="drag(event)"
+		                        data-img="donganziji">
+		                    <img src="img/duojiaoyutou.png" id="duojiaoyutou" draggable="true" ondragstart="drag(event)"
+		                        data-img="duojiaoyutou">
+		                    <img src="img/hengyangyufen.png" id="hengyangyufen" draggable="true" ondragstart="drag(event)"
+		                        data-img="hengyangyufen">
+		                    <img src="img/jiangbanya.png" id="jiangbanya" draggable="true" ondragstart="drag(event)"
+		                        data-img="jiangbanya">
+		                    <img src="img/laweihezheng.png" id="laweihezheng" draggable="true" ondragstart="drag(event)"
+		                        data-img="laweihezheng">
+		                    <!-- 添加更多图片 -->
+		                </div>
+		                <div class="names" id="names-container">
+		                    <div class="name" data-img="changdemifen" ondrop="drop(event)" ondragover="allowDrop(event)">常德米粉
+		                    </div>
+		                    <div class="name" data-img="donganziji" ondrop="drop(event)" ondragover="allowDrop(event)">东安子鸡
+		                    </div>
+		                    <div class="name" data-img="duojiaoyutou" ondrop="drop(event)" ondragover="allowDrop(event)">剁椒鱼头
+		                    </div>
+		                    <div class="name" data-img="hengyangyufen" ondrop="drop(event)" ondragover="allowDrop(event)">衡阳渔粉
+		                    </div>
+		                    <div class="name" data-img="jiangbanya" ondrop="drop(event)" ondragover="allowDrop(event)">酱板鸭</div>
+		                    <div class="name" data-img="laweihezheng" ondrop="drop(event)" ondragover="allowDrop(event)">腊味合蒸
+		                    </div>
+		                    <!-- 添加更多菜名 -->
+		                </div>
+		                <!-- 连接线条 -->
+		                <svg id="svg-container"
+		                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></svg>
+		            </div>
+		        </div>
+		
+		        <script>
+		            function allowDrop(event) {
+		                event.preventDefault();
+		            }
+		
+		            function drag(event) {
+		                event.dataTransfer.setData("text", event.target.id);
+		            }
+		
+		            function drop(event) {
+		                event.preventDefault();
+		                var data = event.dataTransfer.getData("text");
+		                var draggedImg = document.getElementById(data);
+		                var dropTarget = event.target;
+		
+		                // 检查匹配
+		                if (draggedImg.getAttribute('data-img') === dropTarget.getAttribute('data-img')) {
+		                    draggedImg.style.opacity = '0.5'; // 匹配成功，透明化图片
+		                    dropTarget.style.backgroundColor = '#D6E9CA'; // 匹配成功，修改背景色
+		
+		                    // 创建连接线
+		                    drawConnector(draggedImg, dropTarget);
+		                } else {
+		                    // 匹配失败处理（可选）
+		                }
+		            }
+
+		            function drawConnector(imgElem, nameElem) {
+		                var svgContainer = document.getElementById('svg-container');
+		            
+		                // 获取图片和名称元素的中心坐标（视口坐标）
+		                var imgCenterX = getElementCenterX(imgElem);
+		                var imgCenterY = getElementCenterY(imgElem);
+		                var nameCenterX = getElementCenterX(nameElem);
+		                var nameCenterY = getElementCenterY(nameElem);
+		            
+		                // 创建SVG线条元素
+		                var line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+		                line.setAttribute('x1', imgCenterX);
+		                line.setAttribute('y1', imgCenterY);
+		                line.setAttribute('x2', nameCenterX);
+		                line.setAttribute('y2', nameCenterY);
+		                line.setAttribute('stroke', '#D6E9CA');
+		                line.setAttribute('stroke-width', '2');
+		            
+		                // 将线条添加到SVG容器中
+		                svgContainer.appendChild(line);
+		            
+		                // 监听页面缩放事件，更新线条位置
+		                window.addEventListener('resize', function() {
+		                    var newImgCenterX = getElementCenterX(imgElem);
+		                    var newImgCenterY = getElementCenterY(imgElem);
+		                    var newNameCenterX = getElementCenterX(nameElem);
+		                    var newNameCenterY = getElementCenterY(nameElem);
+		            
+		                    // 更新线条的位置
+		                    line.setAttribute('x1', newImgCenterX);
+		                    line.setAttribute('y1', newImgCenterY);
+		                    line.setAttribute('x2', newNameCenterX);
+		                    line.setAttribute('y2', newNameCenterY);
+		                });
+		            }
+		            
+		            // 获取元素的中心X坐标（视口坐标）
+		            function getElementCenterX(elem) {
+		                var rect = elem.getBoundingClientRect();
+		                return rect.left + rect.width / 2;
+		            }
+		            
+		            // 获取元素的中心Y坐标（视口坐标）
+		            function getElementCenterY(elem) {
+		                var rect = elem.getBoundingClientRect();
+		                return rect.top + rect.height / 2;
+		            }
+
+
+					 
+		            // 获取菜名容器和菜名元素列表
+		            var namesContainer = document.getElementById('names-container');
+		            var namesList = Array.from(namesContainer.getElementsByClassName('name'));
+		
+		            // 随机排序菜名
+		            namesList.sort(function() {
+		                return Math.random() - 0.5;
+		            });
+		
+		            // 清空原来的菜名容器
+		            namesContainer.innerHTML = '';
+		
+		            // 重新添加随机排序后的菜名
+		            namesList.forEach(function(name) {
+		                namesContainer.appendChild(name);
+		            });
+		        </script>
+
+	</body>
+</html>

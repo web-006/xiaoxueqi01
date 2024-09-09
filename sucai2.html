@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>寻味之旅：探寻八大菜系</title>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				margin: 0;
+				padding: 0;
+				background-image: url('img/beijing.png');
+				background-size: cover;
+			}
+			
+			.navbar {
+				background-color: #8B4513;
+				overflow: hidden;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				position: fixed;
+				top: 0;
+				width: 100%;
+				z-index: 1000;
+			}
+			
+			.navbar a {
+				color: white;
+				text-align: center;
+				text-decoration: none;
+				padding: 14px 20px;
+				font-size: 17px;
+				opacity: 0.6;
+			}
+			
+			.navbar a.current {
+				opacity: 1;
+				font-weight: bold;
+			}
+			
+			.navbar a:hover {
+				background-color: #A0522D;
+			}
+			
+			.sidebar {
+				background-color: #D2B48C;
+				position: fixed;
+				left: 0;
+				top: 0;
+				width: 100px;
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+			}
+			
+			.sidebar a {
+				color: #fff;
+				text-decoration: none;
+				margin: 10px 0;
+				padding: 10px;
+				border-radius: 5px;
+				opacity: 0.6;
+				transition: opacity 0.3s ease;
+			}
+			
+			.sidebar a:hover {
+				opacity: 1;
+				background-color: #B8860B;
+			}
+			
+			.content {
+				margin-left: 100px;
+				padding: 20px;
+				text-align: left;
+				font-family: Arial, sans-serif;
+				font-size: 16px;
+			}
+			
+			.page {
+				display: none;
+				/* 初始隐藏各个页面 */
+			}
+			
+			.page.active {
+				display: block;
+				/* 显示当前活跃页面 */
+			}
+			
+			.timeline {
+				position: relative;
+				/* 确保timeline容器可以定位其内部元素 */
+			}
+			
+			.image-container {
+				display: flex;
+				justify-content: center;
+				/* 图片水平居中 */
+				align-items: flex-start;
+				/* 垂直对齐方式，顶部对齐 */
+				margin-top: 100px;
+				/* 调整图片与导航栏之间的间距 */
+			}
+			
+			.image-with-text {
+				max-width: 45%;
+				/* 设置容器的最大宽度 */
+				margin: 0 auto;
+				/* 自动左右居中 */
+			}
+			
+			.image-container img {
+				max-width: 73%;
+				/* 图片最大宽度为容器的100% */
+				max-height: 300px; /* 图片高度最大为300像素 */
+				border-radius: 8px;
+				/* 圆角边框 */
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+				/* 添加阴影效果 */
+			}
+			
+			.image-with-text p {
+				font-size: 19px;
+				/* 设置段落文字大小 */
+				margin-top: 13px;
+				/* 上边距 */
+				color: #555;
+				/* 段落文字颜色 */
+				text-align: left;
+				/* 左对齐 */
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<!-- 主导航栏 -->
+		<div class="navbar">
+			<a href="map.html">返回</a>
+			<!-- 链接页面 -->
+			<a href="sucai1.html">起源发展</a>
+			<a href="sucai2.html" class="current">厨师推荐</a>
+			<!-- 链接页面 -->
+			<a href="sucai3.html">互动小游戏</a>
+			<!-- 链接页面 -->
+		</div>
+
+		<div class="image-container">
+			<div class="image-with-text">
+				<img src="img/su1.png" alt="清炖蟹粉狮子头">
+				<p>清炖蟹粉狮子头是江苏扬州的一道传统名菜， 其狮子头肥嫩异常，蟹粉鲜香，青菜酥烂清口，食后清香满口，齿颊留香。</p>
+				<p>食材：猪肉、料酒(100克)、小葱(100克)、姜(30克)、猪油（炼制）(50克)、盐(15克)、淀粉(蚕豆)(25克)</p>
+				<p>(1)葱、姜洗净，用纱布包好挤出葱姜水备用；选用6厘米左右的生菜心洗净，菜头用刀剖成十字刀纹，切去菜叶尖；</p>
+				<p>(2)将猪肉细切粗斩成石榴米状，加葱姜水、蟹肉、虾子少许、精盐、料酒、干淀粉搅拌上劲；</p>
+				<P>(3)将锅置旺火上烧热，舀入熟猪油40克，放入生菜心煸至翠绿色，加虾子少量、精盐，猪肉汤300毫升，烧沸离火；</P>
+				<p>(4)取砂锅一只，用熟猪油10克擦抹锅底，再将菜心排入，倒入肉汤，置中火上烧沸；</p>
+				<p>(5)将拌好的肉分成几份，逐份放在手掌中，用双手来回翻动4～5下，捆成光滑的肉圆，逐个排放在菜心上；</p>
+				<p>(6)再将蟹黄分嵌在每只肉圆上，上盖青菜叶，盖上锅盖，烧沸后移微火焖约2小时，上桌时揭去生菜叶。</p>
+
+			</div>
+			<div class="image-with-text">
+				<img src="img/su2.png" alt="松鼠鳜鱼">
+				<p>松鼠鳜鱼是江苏省的一道传统名菜，属于苏菜系，松鼠鳜鱼因形似松鼠而得名，其色泽鲜艳，鲜嫩酥香，酸甜适口。</p>
+				<p>食材：黄鱼1尾，冬笋25克，豌豆25克，淀粉25克，玉米粉125克，姜米、葱米共10克，料酒10克。清油1000克，香油50克，白糖100克，米醋50克，酱油25克，糖色5克</p>
+				<p>(1)将鱼去鳞、鳃，清膛洗净后剁去头，从脊骨处用刀片开，去掉梁骨，在鱼尾处平均分开，使两片鱼都带尾，去掉骨刺，麦穗花刀，洗净。</p>
+				<p>(2)将冬笋切成小方丁，同豌豆一起用开水稍烫晾凉。</p>
+				<P>(3)炒勺上火，放油烧热，将鱼在玉米粉中滚匀，使麦穗刀口张开，提鱼尾缓缓放入油锅中</P>
+				<p>(4)炸至浅黄色捞出，放入盘内。</p>
+				<p>(5)锅留底油，加入料酒、米醋、白糖、酱油、糖色、豌豆、冬笋丁、葱米、姜米炒熟</p>
+				<p>(6)用水淀粉勾芡，淋香油，将芡汁浇在鱼身上即可。</p>
+
+
+
+			</div>
+
+	</body>
+
+</html>

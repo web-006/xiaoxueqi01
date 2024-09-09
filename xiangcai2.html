@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>寻味之旅：探寻八大菜系</title>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				margin: 0;
+				padding: 0;
+				background-image: url('img/beijing.png');
+				background-size: cover;
+			}
+			
+			.navbar {
+				background-color: #8B4513;
+				overflow: hidden;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				position: fixed;
+				top: 0;
+				width: 100%;
+				z-index: 1000;
+			}
+			
+			.navbar a {
+				color: white;
+				text-align: center;
+				text-decoration: none;
+				padding: 14px 20px;
+				font-size: 17px;
+				opacity: 0.6;
+			}
+			
+			.navbar a.current {
+				opacity: 1;
+				font-weight: bold;
+			}
+			
+			.navbar a:hover {
+				background-color: #A0522D;
+			}
+			
+			.sidebar {
+				background-color: #D2B48C;
+				position: fixed;
+				left: 0;
+				top: 0;
+				width: 100px;
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+			}
+			
+			.sidebar a {
+				color: #fff;
+				text-decoration: none;
+				margin: 10px 0;
+				padding: 10px;
+				border-radius: 5px;
+				opacity: 0.6;
+				transition: opacity 0.3s ease;
+			}
+			
+			.sidebar a:hover {
+				opacity: 1;
+				background-color: #B8860B;
+			}
+			
+			.content {
+				margin-left: 100px;
+				padding: 20px;
+				text-align: left;
+				font-family: Arial, sans-serif;
+				font-size: 16px;
+			}
+			
+			.page {
+				display: none;
+				/* 初始隐藏各个页面 */
+			}
+			
+			.page.active {
+				display: block;
+				/* 显示当前活跃页面 */
+			}
+			
+			.timeline {
+				position: relative;
+				/* 确保timeline容器可以定位其内部元素 */
+			}
+			
+			.image-container {
+				display: flex;
+				justify-content: center;
+				/* 图片水平居中 */
+				align-items: flex-start;
+				/* 垂直对齐方式，顶部对齐 */
+				margin-top: 100px;
+				/* 调整图片与导航栏之间的间距 */
+			}
+			
+			.image-with-text {
+				max-width: 45%;
+				/* 设置容器的最大宽度 */
+				margin: 0 auto;
+				/* 自动左右居中 */
+			}
+			
+			.image-container img {
+				max-width: 73%;
+				/* 图片最大宽度为容器的100% */
+				max-height: 300px; /* 图片高度最大为300像素 */
+				border-radius: 8px;
+				/* 圆角边框 */
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+				/* 添加阴影效果 */
+			}
+			
+			.image-with-text p {
+				font-size: 20px;
+				/* 设置段落文字大小 */
+				margin-top: 15px;
+				/* 上边距 */
+				color: #555;
+				/* 段落文字颜色 */
+				text-align: left;
+				/* 左对齐 */
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<!-- 主导航栏 -->
+		<div class="navbar">
+			<a href="map.html">返回</a>
+			<!-- 链接页面 -->
+			<a href="xiangcai1.html">起源发展</a>
+			<a href="xiangcai2.html" class="current">厨师推荐</a>
+			<!-- 链接页面 -->
+			<a href="xiangcai3.html">互动小游戏</a>
+			<!-- 链接页面 -->
+		</div>
+
+		<div class="image-container">
+			<div class="image-with-text">
+				<img src="img/xiang1.jpg" alt="剁椒鱼头">
+				<p>剁椒鱼头是湖南省的传统名菜，属于湘菜系。据传，起源和清代文人黄宗宪有关。菜品色泽红亮、味浓、肉质细嫩。肥而不腻、口感软糯、鲜辣适口。 2018年9月10日，“中国菜”正式发布，“剁椒鱼头“被评为“中国菜”湖南十大经典名菜。</p>
+				<p>食材：胖头鱼鱼头1个、剁椒适量、高度白酒1大匙、胡椒粉少许、料酒1大匙、蒸鱼豉油1大匙、油适量、盐适量、姜适量、葱适量。</p>
+				<p>做法：(1)将鱼头洗净，从鱼唇正中剖开，在鱼头下面鱼肉较厚的部分斜划几刀。将料酒、胡椒粉、盐撒在鱼头上，抹匀，腌制约20分钟。</p>
+				<p>(2)将高度白酒倒入剁椒中，拌匀备用。在腌制好的鱼头表面淋上少许油，抹匀。</p>
+				<p>(3)将姜切片、葱切段，铺在碗底。再放上处理好的鱼头。然后将剁椒铺在鱼头上。</p>
+				<p>(4)蒸锅内放入适量的水，烧开，然后摆入鱼头，盖盖，大火隔水足汽蒸约10分钟。</p>
+				<p>(5)将蒸好后的鱼头取出，倒去碗内多余的汤汁，撒上葱花，淋入蒸鱼豉油，然后将适量的油烧热，泼在上面即可。</p>
+			</div>
+			<div class="image-with-text">
+				<img src="img/xiang2.jpg" alt="小炒黄牛肉">
+				<p>小炒黄牛肉是一道具有香辣口味的湖南菜，其特点是牛肉鲜嫩多汁，辣味浓郁，非常适合下饭。味道鲜美，十分诱人。</p>
+				<p>食材：黄牛肉（牛里脊肉）200克、青尖椒100克、红尖椒100克。蒜4瓣、食用油50克、姜蒜末各5克、十三香3克、酱油10克、淀粉5克、小苏打3克、蚝油2茶匙（10ml）、盐适量、鸡精少量。</p>
+				<p>(1)挑去牛肉的筋膜，将黄牛肉切成薄片；在牛肉中加入少量淀粉、小苏打和盐、料酒、一勺食用油拌匀腌制15分钟。</p>
+				<p>(2)青、红尖椒切细圈，大蒜去皮切成末。</p>
+				<P>(3)锅烧热，放入食用油，放入牛肉片炒变色，捞出沥干油。</P>
+				<p>(4)锅内留油，放入蒜末炒香后，再放入青红椒圈炒香。</p>
+				<p>(5)将牛肉倒入锅中，一起炒匀，加酱油、蚝油、鸡精和适量的盐炒匀即可。 </p>
+
+			</div>
+
+	</body>
+
+</html>

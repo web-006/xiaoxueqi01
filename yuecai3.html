@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>寻味之旅：探寻八大菜系</title>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				margin: 0;
+				padding: 0;
+				background-image: url('img/beijing.png');
+				background-size: cover;
+			}
+			
+			.navbar {
+				background-color: #8B4513;
+				overflow: hidden;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				position: fixed;
+				top: 0;
+				width: 100%;
+				z-index: 1000;
+			}
+			
+			.navbar a {
+				color: white;
+				text-align: center;
+				text-decoration: none;
+				padding: 14px 20px;
+				font-size: 17px;
+				opacity: 0.6;
+			}
+			
+			.navbar a.current {
+				opacity: 1;
+				font-weight: bold;
+			}
+			
+			.navbar a:hover {
+				background-color: #A0522D;
+			}
+			
+			.sidebar {
+				background-color: #D2B48C;
+				position: fixed;
+				left: 0;
+				top: 0;
+				width: 100px;
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+			}
+			
+			.sidebar a {
+				color: #fff;
+				text-decoration: none;
+				margin: 10px 0;
+				padding: 10px;
+				border-radius: 5px;
+				opacity: 0.6;
+				transition: opacity 0.3s ease;
+			}
+			
+			.sidebar a:hover {
+				opacity: 1;
+				background-color: #B8860B;
+			}
+			
+			.content {
+				margin-left: 100px;
+				padding: 20px;
+				text-align: left;
+				font-family: Arial, sans-serif;
+				font-size: 16px;
+			}
+			
+			.game-board {
+				display: grid;
+				grid-template-columns: repeat(10, 60px);
+				gap: 2px;
+				margin: 20px auto;
+				width: fit-content;
+			}
+			
+			.game-tile {
+				width: 60px;
+				height: 60px;
+				background-size: cover;
+				cursor: pointer;
+			}
+			
+			{
+				font-family: Arial, sans-serif;
+				margin: 0;
+				padding: 0;
+				background-color: #f0f0f0;
+			}
+			
+			.navbar {
+				background-color: #8B4513;
+				overflow: hidden;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				position: fixed;
+				top: 0;
+				width: 100%;
+				z-index: 1000;
+			}
+			
+			.navbar a {
+				color: white;
+				text-align: center;
+				text-decoration: none;
+				padding: 14px 20px;
+				font-size: 17px;
+				opacity: 0.6;
+			}
+			
+			.navbar a.current {
+				opacity: 1;
+				font-weight: bold;
+			}
+			
+			.navbar a:hover {
+				background-color: #A0522D;
+			}
+			
+			.content {
+				margin-top: 60px;
+				text-align: center;
+			}
+			
+			.game-board {
+				display: grid;
+				grid-template-columns: repeat(10, 60px);
+				gap: 2px;
+				margin: 20px auto;
+				width: fit-content;
+			}
+			
+			.game-tile {
+				width: 60px;
+				height: 60px;
+				background-size: cover;
+				cursor: pointer;
+			}
+			
+			.text1 {
+				position: absolute;
+				top: 48%;
+				left: 12%;
+				transform: translate(-50%, -50%);
+				writing-mode: vertical-rl;
+				/* 设置文字竖排显示，从右到左 */
+				text-orientation: upright;
+				/* 设置文字方向为直立 */
+				font-size: 52px;
+				color: #8B4513;
+				text-shadow: -1px -1px 0 #000, 1px -1px 0 #000;
+			}
+			
+			.score {
+				position: absolute;
+				top: 80%;
+				left: 10%;
+				font-size: 30px;
+				color: #8B4513;
+				text-shadow: -1px -1px 0 #000, 1px -1px 0 #000;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="navbar">
+			<a href="map.html">返回</a>
+			<a href="yuecai1.html">起源发展</a>
+			<a href="yuecai2.html">详细</a>
+			<a href="yuecai3.html" class="current">互动小游戏</a>
+		</div>
+
+		<div class="text1">
+			广东早茶消消消
+		</div>
+
+		<div class="content">
+			<div class="score">得分: <span id="score">0</span></div>
+			<div class="game-board" id="gameBoard"></div>
+		</div>
+
+		<script>
+			const boardSize = 10;
+			const images = [
+				'img/yue01.jpg', 'img/yue02.jpg', 'img/yue03.jpg',
+				'img/yue04.jpg', 'img/yue05.jpg', 'img/yue06.jpg'
+			];
+			let board = [];
+			let selectedTile = null;
+			let score = 0;
+
+			function initializeBoard() {
+				for(let row = 0; row < boardSize; row++) {
+					board[row] = [];
+					for(let col = 0; col < boardSize; col++) {
+						board[row][col] = images[Math.floor(Math.random() * images.length)];
+					}
+				}
+				drawBoard();
+			}
+
+			function drawBoard() {
+				const boardElement = document.getElementById('gameBoard');
+				boardElement.innerHTML = '';
+				for(let row = 0; row < boardSize; row++) {
+					for(let col = 0; col < boardSize; col++) {
+						const tile = document.createElement('div');
+						tile.className = 'game-tile';
+						tile.style.backgroundImage = `url('${board[row][col]}')`;
+						tile.dataset.row = row;
+						tile.dataset.col = col;
+						tile.addEventListener('click', handleTileClick);
+						boardElement.appendChild(tile);
+					}
+				}
+			}
+
+			function handleTileClick(event) {
+				const clickedTile = event.target;
+				const row = parseInt(clickedTile.dataset.row);
+				const col = parseInt(clickedTile.dataset.col);
+
+				if(selectedTile) {
+					const prevRow = parseInt(selectedTile.dataset.row);
+					const prevCol = parseInt(selectedTile.dataset.col);
+
+					if((Math.abs(row - prevRow) === 1 && col === prevCol) ||
+						(Math.abs(col - prevCol) === 1 && row === prevRow)) {
+						swapTiles(prevRow, prevCol, row, col);
+						selectedTile = null;
+						checkMatches();
+					} else {
+						selectedTile = clickedTile;
+					}
+				} else {
+					selectedTile = clickedTile;
+				}
+			}
+
+			function swapTiles(row1, col1, row2, col2) {
+				const temp = board[row1][col1];
+				board[row1][col1] = board[row2][col2];
+				board[row2][col2] = temp;
+				drawBoard();
+			}
+
+			function checkMatches() {
+				let matches = [];
+				for(let row = 0; row < boardSize; row++) {
+					let startCol = 0;
+					while(startCol < boardSize) {
+						let endCol = startCol;
+						while(endCol < boardSize && board[row][endCol] === board[row][startCol]) {
+							endCol++;
+						}
+						if(endCol - startCol >= 3) {
+							for(let col = startCol; col < endCol; col++) {
+								matches.push({
+									row,
+									col
+								});
+							}
+						}
+						startCol = endCol;
+					}
+				}
+
+				for(let col = 0; col < boardSize; col++) {
+					let startRow = 0;
+					while(startRow < boardSize) {
+						let endRow = startRow;
+						while(endRow < boardSize && board[endRow][col] === board[startRow][col]) {
+							endRow++;
+						}
+						if(endRow - startRow >= 3) {
+							for(let row = startRow; row < endRow; row++) {
+								matches.push({
+									row,
+									col
+								});
+							}
+						}
+						startRow = endRow;
+					}
+				}
+
+				if(matches.length > 0) {
+					removeMatches(matches);
+					setTimeout(() => {
+						fillBoard();
+						checkMatches();
+					}, 500);
+				}
+			}
+
+			function removeMatches(matches) {
+				matches.forEach(({
+					row,
+					col
+				}) => {
+					board[row][col] = null;
+				});
+				score += matches.length;
+				document.getElementById('score').textContent = score;
+				drawBoard();
+			}
+
+			function fillBoard() {
+				for(let col = 0; col < boardSize; col++) {
+					let emptySlots = [];
+					for(let row = boardSize - 1; row >= 0; row--) {
+						if(board[row][col] === null) {
+							emptySlots.push(row);
+						} else if(emptySlots.length > 0) {
+							const newRow = emptySlots.shift();
+							board[newRow][col] = board[row][col];
+							board[row][col] = null;
+							emptySlots.push(row);
+						}
+					}
+					while(emptySlots.length > 0) {
+						const row = emptySlots.shift();
+						board[row][col] = images[Math.floor(Math.random() * images.length)];
+					}
+				}
+				drawBoard();
+			}
+
+			initializeBoard();
+		</script>
+	</body>
+
+</html>

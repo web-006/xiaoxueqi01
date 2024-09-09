@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>寻味之旅：探寻八大菜系</title>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				margin: 0;
+				padding: 0;
+				background-image: url('img/beijing.png');
+				background-size: cover;
+			}
+			
+			.navbar {
+				background-color: #8B4513;
+				overflow: hidden;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				position: fixed;
+				top: 0;
+				width: 100%;
+				z-index: 1000;
+			}
+			
+			.navbar a {
+				color: white;
+				text-align: center;
+				text-decoration: none;
+				padding: 14px 20px;
+				font-size: 17px;
+				opacity: 0.6;
+			}
+			
+			.navbar a.current {
+				opacity: 1;
+				font-weight: bold;
+			}
+			
+			.navbar a:hover {
+				background-color: #A0522D;
+			}
+			
+			.sidebar {
+				background-color: #D2B48C;
+				position: fixed;
+				left: 0;
+				top: 0;
+				width: 100px;
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+			}
+			
+			.sidebar a {
+				color: #fff;
+				text-decoration: none;
+				margin: 10px 0;
+				padding: 10px;
+				border-radius: 5px;
+				opacity: 0.6;
+				transition: opacity 0.3s ease;
+			}
+			
+			.sidebar a:hover {
+				opacity: 1;
+				background-color: #B8860B;
+			}
+			
+			.content {
+				margin-left: 100px;
+				padding: 20px;
+				text-align: left;
+				font-family: Arial, sans-serif;
+				font-size: 16px;
+			}
+			
+			.page {
+				display: none;
+				/* 初始隐藏各个页面 */
+			}
+			
+			.page.active {
+				display: block;
+				/* 显示当前活跃页面 */
+			}
+			
+			.timeline {
+				position: relative;
+				/* 确保timeline容器可以定位其内部元素 */
+			}
+			
+			.content {
+				margin-top: 4%;
+				/* 图片距离顶部的间距 */
+				padding: 40px;
+				text-align: center;
+				/* 居中对齐内容 */
+				line-height: 1;
+				/* 行高调整 */
+			}
+			
+			.image-selector {
+				display: flex;
+				flex-wrap: wrap;
+				/* 允许图片换行 */
+				justify-content: center;
+				/* 居中对齐图片 */
+				align-items: center;
+				/* 垂直对齐图片 */
+			}
+			
+			.image-selector .image-item {
+				flex: 0 0 18%;
+				/* 每个图片项占容器的18%，每行显示5个 */
+				box-sizing: border-box;
+				/* 包括边框和内边距在内 */
+				text-align: center;
+				/* 居中对齐图片及其名称 */
+				padding: 0;
+				/* 取消图片项的内边距 */
+				margin: 1px;
+				/* 图片项之间的外边距减小至2px */
+			}
+			
+			.image-selector img {
+				width: 130px;
+				/* 使图片适应其容器的宽度 */
+				height: auto;
+				/* 保持图片的比例 */
+				object-fit: cover;
+				/* 保持图片的比例，裁剪超出部分 */
+				cursor: pointer;
+				display: block;
+				/* 确保图片没有多余的空白 */
+				margin: 0 auto;
+				/* 图片的外边距设置为自动居中 */
+			}
+			
+			.image-selector .image-item p {
+				margin: 3px 0;
+				/* 文字与图片之间的间距 */
+				font-size: 25px;
+				/* 图片名称的字号为25px */
+			}
+			
+			.selection-display {
+				position: absolute;
+				/* 确保容器可以被绝对定位 */
+				top: 85%;
+				/* 设置容器的垂直位置 */
+				left: 45%;
+				/* 设置容器的水平位置 */
+				transform: translate(-50%, -50%);
+				/* 使容器的中心对齐于指定位置 */
+			}
+			
+			.selection-display img {
+				width: 120px;
+				/* 图片宽度 */
+				height: 120px;
+				/* 图片高度 */
+				margin: 8px;
+				/* 图片外边距 */
+			}
+			
+			.popup {
+				position: fixed;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				background-color: white;
+				border: 2px solid black;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+				display: none;
+				z-index: 1001;
+				padding: 20px;
+				text-align: center;
+				width: 300px;
+				/* 调整宽度 */
+				max-height: 400px;
+				/* 最大高度 */
+			}
+			
+			.popup img {
+				width: 100%;
+				max-height: 300px;
+				/* 限制图片最大高度 */
+				object-fit: contain;
+				/* 保持图片比例 */
+			}
+			
+			.popup .close {
+				position: absolute;
+				top: 10px;
+				right: 10px;
+				cursor: pointer;
+				font-size: 20px;
+				color: red;
+			}
+			
+			.popup .button-container {
+				margin-top: 20px;
+			}
+			
+			.popup .button-container button {
+				padding: 10px 20px;
+				font-size: 16px;
+				cursor: pointer;
+				margin: 0 5px;
+			}
+			
+			.popup .caption {
+				margin-top: 10px;
+				font-size: 18px;
+				font-weight: bold;
+			}
+			
+			.gallery {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				/* 居中对齐图片 */
+				gap: 10px;
+				/* 图片之间的间距 */
+				margin: 0 auto;
+				/* 使容器居中 */
+				max-width: 1200px;
+				/* 容器的最大宽度，视情况调整 */
+			}
+			
+			.gallery-img {
+				width: calc(50% - 10px);
+				/* 每行两个图片，考虑间距 */
+				margin-bottom: 10px;
+				/* 图片底部的间距 */
+				box-sizing: border-box;
+				/* 包括边框和内边距在内 */
+			}
+			
+			.text1 {
+				position: absolute;
+				top: 16%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				text-orientation: upright;
+				/* 设置文字方向为直立 */
+				font-size: 66px;
+				color: #8B4513;
+				text-shadow: -1px -1px 0 #000, 1px -1px 0 #000;
+			}
+			
+			.text2 {
+				position: absolute;
+				top: 82%;
+				left: 20%;
+				transform: translate(-50%, -50%);
+				text-orientation: upright;
+				/* 设置文字方向为直立 */
+				font-size: 45px;
+				color: #8B4513;
+				text-shadow: -0.5px -0.5px 0 #000, 0.5px -0.5px 0 #000;
+			}
+			
+			{
+				font-family: Arial, sans-serif;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 100vh;
+				margin: 0;
+				background-color: #f4f4f4;
+			}
+			
+			.button-container {
+				display: flex;
+				gap: 10px;
+			}
+			/* 按钮样式 */
+			
+			.btn {
+				background-color: #007BFF;
+				/* 蓝色背景 */
+				border: none;
+				color: white;
+				padding: 10px 20px;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 16px;
+				margin: 4px 2px;
+				cursor: pointer;
+				border-radius: 5px;
+			}
+			
+			.btn:hover {
+				background-color: #45a049;
+				/* 悬停时绿色 */
+			}
+			
+			.help-btn {
+				background-color: #007BFF;
+				/* 蓝色背景 */
+			}
+			
+			.help-btn:hover {
+				background-color: #45a049;
+				/* 悬停时绿色 */
+			}
+			/* Modal (弹窗) 样式 */
+			
+			.modal {
+				display: none;
+				/* 隐藏弹窗 */
+				position: fixed;
+				z-index: 1;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				overflow: auto;
+				background-color: rgb(0, 0, 0);
+				background-color: rgba(0, 0, 0, 0.4);
+				/* 半透明背景 */
+			}
+			
+			.modal-content {
+				background-color: #fefefe;
+				margin: 15% auto;
+				padding: 20px;
+				border: 1px solid #888;
+				width: 80%;
+				max-width: 600px;
+				border-radius: 10px;
+			}
+			
+			.close {
+				color: #aaa;
+				float: right;
+				font-size: 28px;
+				font-weight: bold;
+			}
+			
+			.close:hover,
+			.close:focus {
+				color: #007BFF;
+				/* 蓝色 */
+				text-decoration: none;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<!-- 主导航栏 -->
+		<div class="navbar">
+			<a href="map.html">返回</a>
+			<a href="zhecai1.html">起源发展</a>
+			<a href="zhecai2.html">详细</a>
+			<a href="zhecai3.html" class="current">互动小游戏</a>
+		</div>
+
+		<!-- 内容区域 -->
+		<div class="text1">
+			请选择食材制作浙菜
+		</div>
+		<div class="content">
+
+			<div class="content">
+				<div class="image-selector">
+					<div class="image-item">
+						<img src="img/1.png" alt="1" onclick="selectImage('img/1.png')">
+						<p>鱼</p>
+					</div>
+					<div class="image-item">
+						<img src="img/2.jpg" alt="2" onclick="selectImage('img/2.jpg')">
+						<p>猪肉</p>
+					</div>
+					<div class="image-item">
+						<img src="img/3.jpg" alt="3" onclick="selectImage('img/3.jpg')">
+						<p>香菇</p>
+					</div>
+					<div class="image-item">
+						<img src="img/4.jpg" alt="4" onclick="selectImage('img/4.jpg')">
+						<p>鸡蛋</p>
+					</div>
+					<div class="image-item">
+						<img src="img/5.jpg" alt="5" onclick="selectImage('img/5.jpg')">
+						<p>小油菜</p>
+					</div>
+					<div class="image-item">
+						<img src="img/6.jpg" alt="6" onclick="selectImage('img/6.jpg')">
+						<p>鸡胸肉</p>
+					</div>
+					<div class="image-item">
+						<img src="img/7.jpg" alt="7" onclick="selectImage('img/7.jpg')">
+						<p>面粉</p>
+					</div>
+					<div class="image-item">
+						<img src="img/8.jpg" alt="8" onclick="selectImage('img/8.jpg')">
+						<p>虾仁</p>
+					</div>
+					<div class="image-item">
+						<img src="img/9.jpg" alt="9" onclick="selectImage('img/9.jpg')">
+						<p>鸡</p>
+					</div>
+					<div class="image-item">
+						<img src="img/10.jpg" alt="10" onclick="selectImage('img/10.jpg')">
+						<p>荷叶</p>
+					</div>
+				</div>
+
+				<div class="text2">
+					您已选择的食材:
+				</div>
+
+				<div class="selection-display" id="selection-display">
+
+					<div id="selected-images"></div>
+					<button class="btn" onclick="processSelection()">制作</button>
+					<button class="btn help-btn" onclick="resetSelection()">重新制作</button>
+					<button class="btn help-btn" onclick="showHelp()">帮助</button>
+				</div>
+			</div>
+
+			<div id="helpModal" class="modal">
+				<div class="modal-content">
+					<span class="close" onclick="closeHelp()">&times;</span>
+					<p>西湖醋鱼：鱼</p>
+					<p>东坡肉：猪肉</p>
+					<p>宋嫂鱼羹：鱼、香菇、鸡蛋</p>
+					<p>清汤越鸡：香菇、小油菜、鸡胸肉</p>
+					<p>桂花鱼条：鱼、鸡蛋、面粉</p>
+					<p>龙井虾仁：虾仁</p>
+					<p>叫花鸡：鸡、荷叶</p>
+
+				</div>
+			</div>
+
+			<!-- 弹出图片 -->
+			<div class="popup" id="popup">
+				<span class="close" onclick="closePopup()">&times;</span>
+				<img id="popup-img" src="" alt="Popup Image">
+				<div class="caption" id="popup-caption"></div>
+
+			</div>
+
+			<script>
+				// 用于存储已选择的图片
+				let selectedImages = [];
+
+				// 选择或取消选择图片
+				function selectImage(image) {
+					if(selectedImages.includes(image)) {
+						selectedImages = selectedImages.filter(img => img !== image);
+					} else {
+						selectedImages.push(image);
+					}
+					updateSelectionDisplay();
+				}
+
+				// 更新选中图片的显示
+				function updateSelectionDisplay() {
+					const selectedImagesContainer = document.getElementById('selected-images');
+					selectedImagesContainer.innerHTML = '';
+					selectedImages.forEach(image => {
+						const img = document.createElement('img');
+						img.src = image;
+						img.alt = 'Selected Image';
+						img.style.width = '100px'; // 调整图片大小以适应容器
+						img.style.height = 'auto';
+						img.style.margin = '5px'; // 图片之间的间距
+						selectedImagesContainer.appendChild(img);
+					});
+				}
+
+				// 处理选中的图片并显示弹窗
+				function processSelection() {
+					const popupImg = document.getElementById('popup-img');
+					const popupCaption = document.getElementById('popup-caption');
+					const popup = document.getElementById('popup');
+
+					// 图片映射
+					const imageMap = {
+						'img/1.png': {
+							src: 'img/a.jpg',
+							caption: '西湖醋鱼'
+						},
+						'img/2.jpg': {
+							src: 'img/b.png',
+							caption: '东坡肉'
+						},
+						'img/1.png,img/3.jpg,img/4.jpg': {
+							src: 'img/c.jpg',
+							caption: '宋嫂鱼羹'
+						},
+						'img/3.jpg,img/5.jpg,img/6.jpg': {
+							src: 'img/d.jpg',
+							caption: '清汤越鸡'
+						},
+						'img/1.png,img/4.jpg,img/7.jpg': {
+							src: 'img/e.jpg',
+							caption: '桂花鱼条'
+						},
+						'img/8.jpg': {
+							src: 'img/f.png',
+							caption: '龙井虾仁'
+						},
+						'img/10.jpg,img/9.jpg': {
+							src: 'img/g.jpg',
+							caption: '叫花鸡'
+						},
+						'img/4.jpg': {
+							src: 'img/y.jpg',
+							caption: '这不是浙菜 这是煎鸡蛋'
+						},
+						'img/6.jpg': {
+							src: 'img/z.jpg',
+							caption: '这不是浙菜 这是炸鸡排'
+						},
+						'img/7.jpg': {
+							src: 'img/l.jpg',
+							caption: '这不是浙菜 这是美味的花卷'
+						},
+						'img/9.jpg': {
+							src: 'img/m.jpg',
+							caption: '这不是浙菜 这是炸鸡'
+						},
+						'img/10.jpg': {
+							src: 'img/n.jpg',
+							caption: '这不是浙菜 这是荷花'
+						},
+						'img/3.jpg,img/4.jpg,img/7.jpg': {
+							src: 'img/o.jpg',
+							caption: '这不是浙菜 这是炸香菇'
+						},
+
+					};
+
+					// 将选中图片排序并生成键
+					const selectedKey = selectedImages.sort().join(',');
+					console.log("Selected Key: ", selectedKey); // 调试信息
+					const result = imageMap[selectedKey] || {
+						src: 'img/x.jpg',
+						caption: '黑暗料理'
+					};
+
+					popupImg.src = result.src;
+					popupCaption.textContent = result.caption;
+					popup.style.display = 'block';
+				}
+
+				// 关闭弹窗
+				function closePopup() {
+					document.getElementById('popup').style.display = 'none';
+				}
+
+				// 重置选择
+				function resetSelection() {
+					selectedImages = [];
+					updateSelectionDisplay();
+				}
+
+				// 显示帮助弹窗
+				function showHelp() {
+					document.getElementById('helpModal').style.display = 'block';
+				}
+
+				// 关闭帮助弹窗
+				function closeHelp() {
+					document.getElementById('helpModal').style.display = 'none';
+				}
+
+				// 假设制作和重新制作按钮分别是 showMake 和 showReMake
+				function showMake() {
+					document.getElementById('makeModal').style.display = 'block';
+				}
+
+				function closeMake() {
+					document.getElementById('makeModal').style.display = 'none';
+				}
+
+				function showReMake() {
+					document.getElementById('reMakeModal').style.display = 'block';
+				}
+
+				function closeReMake() {
+					document.getElementById('reMakeModal').style.display = 'none';
+				}
+			</script>
+
+	</body>
+
+</html>

@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>寻味之旅：探寻八大菜系</title>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				margin: 0;
+				padding: 0;
+				background-image: url('img/beijing.png');
+				background-size: cover;
+			}
+			
+			.navbar {
+				background-color: #8B4513;
+				overflow: hidden;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				position: fixed;
+				top: 0;
+				width: 100%;
+				z-index: 1000;
+			}
+			
+			.navbar a {
+				color: white;
+				text-align: center;
+				text-decoration: none;
+				padding: 14px 20px;
+				font-size: 17px;
+				opacity: 0.6;
+			}
+			
+			.navbar a.current {
+				opacity: 1;
+				font-weight: bold;
+			}
+			
+			.navbar a:hover {
+				background-color: #A0522D;
+			}
+			
+			.sidebar {
+				background-color: #D2B48C;
+				position: fixed;
+				left: 0;
+				top: 0;
+				width: 100px;
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+			}
+			
+			.sidebar a {
+				color: #fff;
+				text-decoration: none;
+				margin: 10px 0;
+				padding: 10px;
+				border-radius: 5px;
+				opacity: 0.6;
+				transition: opacity 0.3s ease;
+			}
+			
+			.sidebar a:hover {
+				opacity: 1;
+				background-color: #B8860B;
+			}
+			
+			.content {
+				margin-left: 100px;
+				padding: 20px;
+				text-align: left;
+				font-family: Arial, sans-serif;
+				font-size: 16px;
+			}
+			
+			.page {
+				display: none;
+			}
+			
+			.page.active {
+				display: block;
+			}
+			
+			.timeline {
+				position: relative;
+			}
+			
+			.start-btn {
+				position: absolute;
+				top: 40%;
+				left: 45%;
+				padding: 20px 40px;
+				font-size: 24px;
+				background-color: #8B4513;
+				color: white;
+				border: none;
+				border-radius: 10px;
+				cursor: pointer;
+			}
+			
+			.modal {
+				display: none;
+				position: fixed;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				background-color: #ccb38c;
+				/* 更新背景颜色为 #fce38a */
+				padding: 20px;
+				box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+				width: 80%;
+				max-width: 600px;
+				z-index: 1001;
+			}
+			
+			.modal-header {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+			
+			.modal-header h2 {
+				margin: 0;
+			}
+			
+			.close-btn {
+				position: absolute;
+				/* 绝对定位以放置在父元素的右上角 */
+				top: 10px;
+				/* 距离顶部 10px */
+				right: 10px;
+				/* 距离右侧 10px */
+				cursor: pointer;
+				/* 鼠标悬停时显示手型光标 */
+				font-size: 24px;
+				/* 字体大小 */
+				color: #aaa;
+				/* 字体颜色 */
+				background: none;
+				/* 无背景 */
+				border: none;
+				/* 无边框 */
+			}
+			
+			.close-btn:hover {
+				color: #000;
+				/* 鼠标悬停时改变颜色 */
+			}
+			
+			.question {
+				margin-bottom: 20px;
+			}
+			
+			.answers {
+				margin: 10px 0;
+			}
+			
+			.answers label {
+				display: block;
+				margin: 5px 0;
+				position: relative;
+				padding-left: 30px;
+			}
+			
+			.answers input[type="radio"] {
+				position: absolute;
+				left: 0;
+				top: 0;
+				cursor: pointer;
+			}
+			
+			.navigation-buttons {
+				text-align: center;
+				margin-top: 20px;
+			}
+			
+			.navigation-buttons button {
+				padding: 10px 20px;
+				font-size: 16px;
+				margin: 0 10px;
+				cursor: pointer;
+			}
+			
+			#prevQuestion {
+				float: left;
+			}
+			
+			#nextQuestion {
+				float: right;
+			}
+			
+			#submitQuiz {
+				display: none;
+				/* 确保元素在默认情况下不可见 */
+				margin: 0 auto;
+				clear: both;
+				/* 确保不受浮动影响 */
+				position: relative;
+				/* 相对定位使得 left 属性生效 */
+				left: 200px;
+				/* 向右移动 20px */
+			}
+			
+			.score {
+				font-size: 20px;
+				margin-top: 20px;
+				text-align: center;
+			}
+			
+			.text1 {
+				position: absolute;
+				top: 20%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				text-orientation: upright;
+				/* 设置文字方向为直立 */
+				font-size: 66px;
+				color: #8B4513;
+				text-shadow: -1px -1px 0 #000, 1px -1px 0 #000;
+			}
+			
+			.text2 {
+				position: absolute;
+				top: 53%;
+				left: 17%;
+				transform: translate(-50%, -50%);
+				writing-mode: vertical-rl;
+				/* 设置文字竖排显示，从右到左 */
+				text-orientation: upright;
+				/* 设置文字方向为直立 */
+				font-size: 36px;
+				color: #8B4513;
+				text-shadow: -1px -1px 0 #000, 1px -1px 0 #000;
+				white-space: nowrap;
+				/* 防止文字换行 */
+			}
+			
+			.text3 {
+				position: absolute;
+				top: 53%;
+				right: 15%;
+				transform: translate(-50%, -50%);
+				writing-mode: vertical-rl;
+				/* 设置文字竖排显示，从右到左 */
+				text-orientation: upright;
+				/* 设置文字方向为直立 */
+				font-size: 36px;
+				color: #8B4513;
+				text-shadow: -1px -1px 0 #000, 1px -1px 0 #000;
+				white-space: nowrap;
+				/* 防止文字换行 */
+			}
+			
+			.text4 {
+				position: absolute;
+				top: 73%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				text-orientation: upright;
+				/* 设置文字方向为直立 */
+				font-size: 20px;
+				color: #8B4513;
+				text-shadow: -0.5px -0.5px 0 #000, 0.5px -0.5px 0 #000;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<!-- 主导航栏 -->
+		<div class="navbar">
+			<a href="map.html">返回</a>
+			<a href="hucai1.html">起源发展</a>
+			<a href="hucai2.html">详细</a>
+			<a href="hucai3.html" class="current">互动小游戏</a>
+		</div>
+
+		<div class="text1">
+			徽菜知识大问答
+		</div>
+
+		<div class="text2">
+			徽山秀水滋美味，烟火人间飘馥香
+		</div>
+
+		<div class="text3">
+			古韵今风藏匠心，酱醋清鲜诉情长
+		</div>
+
+		<div class="text4">
+			徽菜即为安徽菜，起源于南宋时期的古徽州，原是徽州山区的地方风味，在漫长的岁月里，经过历代名厨的辛勤创造、兼收并蓄，特别是解放以后，省内名厨的交流切磋、继承发展，徽菜已逐渐从徽州地区的山乡风味脱颖而出，如今已集中了安徽各地的风味特邑、名馔佳肴，逐步形成了一个雅俗共赏、南北咸宜、独具一格、自成一体的著名菜系。后来渐渐流传到江苏、浙江、福建、上海、湖北等地， 甚至影响到大西北的古都西安，在中国菜系中独树一帜，与川菜、鲁菜、粤菜、苏菜、浙菜、闽菜、湘菜并列中国八大菜系。
+		</div>
+
+		<div class="content">
+			<button class="start-btn">开始游戏</button>
+
+			<!-- 游戏弹窗 -->
+			<div id="quizModal" class="modal">
+				<div class="modal-header">
+					<h2>徽菜知识问答</h2>
+					<span class="close-btn">&times;</span>
+				</div>
+				<div id="quizContainer">
+					<!-- 问题和选项会通过 JavaScript 动态生成 -->
+				</div>
+				<div class="navigation-buttons">
+					<button id="prevQuestion">上一题</button>
+					<button id="nextQuestion">下一题</button>
+					<button id="submitQuiz">提交</button>
+				</div>
+				<div id="quizScore" class="score" style="display: none;"></div>
+			</div>
+		</div>
+
+		<script>
+			// 问题及选项
+			const questions = [{
+					question: "徽菜以什么为主料？",
+					options: ["A. 猪肉", "B. 鸡肉", "C. 鱼", "D. 牛肉"],
+					correct: "A"
+				},
+				{
+					question: "徽菜的代表菜是什么？",
+					options: ["A. 红烧肉", "B. 毛豆腐", "C. 宫保鸡丁", "D. 鱼香肉丝"],
+					correct: "B"
+				},
+				{
+					question: "徽菜的传统口味是什么？",
+					options: ["A. 辣", "B. 甜", "C. 酸", "D. 咸"],
+					correct: "D"
+				},
+				{
+					question: "徽菜的调料主要有哪些？",
+					options: ["A. 酱油", "B. 花椒", "C. 料酒", "D. 白糖"],
+					correct: "B"
+				},
+				{
+					question: "徽菜的烹饪方法主要是？",
+					options: ["A. 炒", "B. 烧", "C. 蒸", "D. 炖"],
+					correct: "D"
+				},
+				{
+					question: "徽菜的起源地是哪里？",
+					options: ["A. 南京", "B. 合肥", "C. 上海", "D. 杭州"],
+					correct: "B"
+				},
+				{
+					question: "徽菜中的‘臭豆腐’有什么特别之处？",
+					options: ["A. 辣味", "B. 酸味", "C. 芝士味", "D. 特有的发酵味"],
+					correct: "D"
+				},
+				{
+					question: "徽菜常用的炖煮材料是？",
+					options: ["A. 大米", "B. 红枣", "C. 鸡翅", "D. 绿豆"],
+					correct: "C"
+				},
+				{
+					question: "徽菜的代表小吃是什么？",
+					options: ["A. 锅贴", "B. 小笼包", "C. 腐乳", "D. 肉松"],
+					correct: "C"
+				},
+				{
+					question: "徽菜中常用的调味品是什么？",
+					options: ["A. 辣椒", "B. 豆瓣酱", "C. 醋", "D. 芝麻"],
+					correct: "C"
+				}
+			];
+
+			// 获取 HTML 元素
+			const startBtn = document.querySelector('.start-btn');
+			const quizModal = document.getElementById('quizModal');
+			const closeBtn = document.querySelector('.close-btn');
+			const quizContainer = document.getElementById('quizContainer');
+			const prevBtn = document.getElementById('prevQuestion');
+			const nextBtn = document.getElementById('nextQuestion');
+			const submitBtn = document.getElementById('submitQuiz');
+			const scoreDiv = document.getElementById('quizScore');
+
+			let currentQuestionIndex = 0;
+			let userAnswers = [];
+
+			// 显示弹窗
+			startBtn.addEventListener('click', () => {
+				quizModal.style.display = 'block';
+				showQuestion(currentQuestionIndex);
+			});
+
+			// 关闭弹窗
+			closeBtn.addEventListener('click', () => {
+				quizModal.style.display = 'none';
+			});
+
+			// 显示问题
+			function showQuestion(index) {
+				const questionData = questions[index];
+				quizContainer.innerHTML = `
+                <div class="question">
+                    <h3>${questionData.question}</h3>
+                    <div class="answers">
+                        ${questionData.options.map((option, i) => `
+                            <label>
+                                <input type="radio" name="answer" value="${String.fromCharCode(65 + i)}">
+                                <span></span>
+                                ${option}
+                            </label>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+
+				prevBtn.style.display = index === 0 ? 'none' : 'inline-block';
+				nextBtn.style.display = index === questions.length - 1 ? 'none' : 'inline-block';
+				submitBtn.style.display = index === questions.length - 1 ? 'inline-block' : 'none';
+			}
+
+			// 处理上一题按钮
+			prevBtn.addEventListener('click', () => {
+				saveAnswer();
+				currentQuestionIndex--;
+				showQuestion(currentQuestionIndex);
+			});
+
+			// 处理下一题按钮
+			nextBtn.addEventListener('click', () => {
+				saveAnswer();
+				currentQuestionIndex++;
+				showQuestion(currentQuestionIndex);
+			});
+
+			// 保存用户选择的答案
+			function saveAnswer() {
+				const selectedOption = document.querySelector('input[name="answer"]:checked');
+				if(selectedOption) {
+					userAnswers[currentQuestionIndex] = selectedOption.value;
+				}
+			}
+
+			// 提交并显示分数
+			submitBtn.addEventListener('click', () => {
+				saveAnswer();
+				let score = 0;
+				questions.forEach((q, i) => {
+					if(userAnswers[i] === q.correct) {
+						score++;
+					}
+				});
+				scoreDiv.innerHTML = `你获得了 ${score} 分 / ${questions.length} 分`;
+				scoreDiv.style.display = 'block';
+			});
+		</script>
+	</body>
+
+</html>

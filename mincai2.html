@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>寻味之旅：探寻八大菜系</title>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				margin: 0;
+				padding: 0;
+				background-image: url('img/beijing.png');
+				background-size: cover;
+			}
+			
+			.navbar {
+				background-color: #8B4513;
+				overflow: hidden;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				position: fixed;
+				top: 0;
+				width: 100%;
+				z-index: 1000;
+			}
+			
+			.navbar a {
+				color: white;
+				text-align: center;
+				text-decoration: none;
+				padding: 14px 20px;
+				font-size: 17px;
+				opacity: 0.6;
+			}
+			
+			.navbar a.current {
+				opacity: 1;
+				font-weight: bold;
+			}
+			
+			.navbar a:hover {
+				background-color: #A0522D;
+			}
+			
+			.sidebar {
+				background-color: #D2B48C;
+				position: fixed;
+				left: 0;
+				top: 0;
+				width: 100px;
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+			}
+			
+			.sidebar a {
+				color: #fff;
+				text-decoration: none;
+				margin: 10px 0;
+				padding: 10px;
+				border-radius: 5px;
+				opacity: 0.6;
+				transition: opacity 0.3s ease;
+			}
+			
+			.sidebar a:hover {
+				opacity: 1;
+				background-color: #B8860B;
+			}
+			
+			.content {
+				margin-left: 100px;
+				padding: 20px;
+				text-align: left;
+				font-family: Arial, sans-serif;
+				font-size: 16px;
+			}
+			
+			.page {
+				display: none;
+				/* 初始隐藏各个页面 */
+			}
+			
+			.page.active {
+				display: block;
+				/* 显示当前活跃页面 */
+			}
+			
+			.timeline {
+				position: relative;
+				/* 确保timeline容器可以定位其内部元素 */
+			}
+			
+			.image-container {
+				display: flex;
+				justify-content: center;
+				/* 图片水平居中 */
+				align-items: flex-start;
+				/* 垂直对齐方式，顶部对齐 */
+				margin-top: 100px;
+				/* 调整图片与导航栏之间的间距 */
+			}
+			
+			.image-with-text {
+				max-width: 45%;
+				/* 设置容器的最大宽度 */
+				margin: 0 auto;
+				/* 自动左右居中 */
+			}
+			
+			.image-container img {
+				max-width: 73%;
+				/* 图片最大宽度为容器的100% */
+				max-height: 300px; /* 图片高度最大为300像素 */
+				border-radius: 8px;
+				/* 圆角边框 */
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+				/* 添加阴影效果 */
+			}
+			
+			.image-with-text p {
+				font-size: 20px;
+				/* 设置段落文字大小 */
+				margin-top: 20px;
+				/* 上边距 */
+				color: #555;
+				/* 段落文字颜色 */
+				text-align: left;
+				/* 左对齐 */
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<!-- 主导航栏 -->
+		<div class="navbar">
+			<a href="map.html">返回</a>
+			<!-- 链接页面 -->
+			<a href="mincai1.html">起源发展</a>
+			<a href="mincai2.html" class="current">厨师推荐</a>
+			<!-- 链接页面 -->
+			<a href="mincai3.html">互动小游戏</a>
+			<!-- 链接页面 -->
+		</div>
+
+		<div class="image-container">
+			<div class="image-with-text">
+				<img src="img/min1.jpg" alt="佛跳墙">
+				<p>佛跳墙又名福寿全，是福建省福州市的一道特色名菜，属闽菜系。相传，该菜品是在清道光年间由福州聚春园菜馆老板郑春发研制出来的，又据费孝通先生记，发明此菜者乃一帮要饭的乞丐。成菜后，软嫩柔润，浓郁荤香，又荤而不腻，味中有味。</p>
+				<p>食材：干鲍鱼6只，花胶1片，干海参6条，老母鸡汤1锅，鸭胸肉1块，火腿肉100g，花菇5个，草虾）6只，文蛤10个，猪爪1个，鸽子蛋10枚，冬笋1个，瑶柱1把，五花肉 </p>
+				<p>做法：(1)把鸭腿，猪爪焯出来，鲜鲍鱼洗净，发干海参</p>
+				<p>(2)金华火腿鲍鱼蒸熟，五花肉焯水，冬菇冬笋，鸽子蛋煮好，炒鸭腿猪爪</p>
+				<p>(3)再放入其他肉类加高汤，冬菇和笋最后放，砂锅炖5个小时，收汁盛出</p>
+				<p>(4)周围摆上西兰花和鸽子（鹌鹑）蛋，滋补</p>
+			</div>
+			<div class="image-with-text">
+				<img src="img/min2.jpg" alt="醉排骨">
+				<p>醉排骨是福建省福州地区的特色传统名菜。因其香味浓郁，令人陶醉，故名之，桔红色，酸甜微辣，外脆里鲜嫩，在餐桌上可以说是被秒杀的一道菜。</p>
+				<p>食材：排骨、酱油、白砂糖、香醋、番茄酱、荸荠、浓缩橘汁、咖喱粉、芝麻酱、香油、大葱、大蒜、味精、姜、淀粉、花生油。</p>
+				<p>(1)将排骨切小块，加苏打、精盐、料酒抓匀腌制一个晚上待用；淀粉、酱油、味精、盐、水各适量调匀成粉浆；</p>
+				<p>(2)将里切好的排骨上浆挂糊，备用；荸荠拍扁切碎，每粒四开切；葱去根须，洗净，取葱白切珠，蒜头切茸；</p>
+				<P>(3)将酱油、白糖、香醋、番茄酱、橙汁、咖喱粉、麻酱、香油、味精和葱、蒜、姜末和水调在一起待用</P>
+				<p>(4)锅置旺火上，下花生油烧七成热时，倒入上浆的里排骨炸熟呈金黄色，捞起，沥干油</p>
+				<p>(5)炒锅放少量油，下入荸荠，再下入排骨翻炒均匀。排骨、马蹄倒入调好的味汁盆中，翻颠几下即成。</p>
+
+			</div>
+
+	</body>
+
+</html>

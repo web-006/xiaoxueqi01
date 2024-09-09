@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>寻味之旅：探寻八大菜系</title>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				margin: 0;
+				padding: 0;
+				background-image: url('img/beijing.png');
+				background-size: cover;
+			}
+			
+			.navbar {
+				background-color: #8B4513;
+				overflow: hidden;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				position: fixed;
+				top: 0;
+				width: 100%;
+				z-index: 1000;
+			}
+			
+			.navbar a {
+				color: white;
+				text-align: center;
+				text-decoration: none;
+				padding: 14px 20px;
+				font-size: 17px;
+				opacity: 0.6;
+			}
+			
+			.navbar a.current {
+				opacity: 1;
+				font-weight: bold;
+			}
+			
+			.navbar a:hover {
+				background-color: #A0522D;
+			}
+			
+			.sidebar {
+				background-color: #D2B48C;
+				position: fixed;
+				left: 0;
+				top: 0;
+				width: 100px;
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+			}
+			
+			.sidebar a {
+				color: #fff;
+				text-decoration: none;
+				margin: 10px 0;
+				padding: 10px;
+				border-radius: 5px;
+				opacity: 0.6;
+				transition: opacity 0.3s ease;
+			}
+			
+			.sidebar a:hover {
+				opacity: 1;
+				background-color: #B8860B;
+			}
+			
+			.content {
+				margin-left: 100px;
+				padding: 20px;
+				text-align: left;
+				font-family: Arial, sans-serif;
+				font-size: 16px;
+			}
+			
+			.page {
+				display: none;
+				/* 初始隐藏各个页面 */
+			}
+			
+			.page.active {
+				display: block;
+				/* 显示当前活跃页面 */
+			}
+			
+			.timeline {
+				position: relative;
+				/* 确保timeline容器可以定位其内部元素 */
+			}
+			
+			.image-container {
+				display: flex;
+				justify-content: center;
+				/* 图片水平居中 */
+				align-items: flex-start;
+				/* 垂直对齐方式，顶部对齐 */
+				margin-top: 100px;
+				/* 调整图片与导航栏之间的间距 */
+			}
+			
+			.image-with-text {
+				max-width: 45%;
+				/* 设置容器的最大宽度 */
+				margin: 0 auto;
+				/* 自动左右居中 */
+			}
+			
+			.image-container img {
+				max-width: 73%;
+				/* 图片最大宽度为容器的100% */
+				max-height: 300px; /* 图片高度最大为300像素 */
+				border-radius: 8px;
+				/* 圆角边框 */
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+				/* 添加阴影效果 */
+			}
+			
+			.image-with-text p {
+				font-size: 21px;
+				/* 设置段落文字大小 */
+				margin-top: 18px;
+				/* 上边距 */
+				color: #555;
+				/* 段落文字颜色 */
+				text-align: left;
+				/* 左对齐 */
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<!-- 主导航栏 -->
+		<div class="navbar">
+			<a href="map.html">返回</a>
+			<!-- 链接页面 -->
+			<a href="yuecai1.html">起源发展</a>
+			<a href="yuecai2.html" class="current">厨师推荐</a>
+			<!-- 链接页面 -->
+			<a href="yuecai3.html">互动小游戏</a>
+			<!-- 链接页面 -->
+		</div>
+
+		<div class="image-container">
+			<div class="image-with-text">
+				<img src="img/yue1.png" alt="白斩鸡">
+				<p>白斩鸡又叫白切鸡、三黄油鸡，是一道中华民族特色菜肴，起源于广东，是一道经典的粤菜，白斩鸡形状美观，皮黄肉白，肥嫩鲜美，滋味异常鲜美，十分可口</p>
+				<p>食材：三黄鸡1只（约1000克），香葱1棵，生姜1小块，大蒜6瓣。香油2小匙，香醋1小匙，精盐1小匙，白糖1/2小匙，味精1/2小匙。</p>
+				<p>做法：(1)鸡宰杀洗净，把鸡的嘴巴从翅膀下穿过去，然后把鸡放入热水中浸30分钟，注意用小火，保证锅里的水不会沸腾，利用水的热度把鸡浸透、泡熟，这样鸡肉会比较嫩。</p>
+				<p>(2)葱、姜洗净切末，蒜剁成茸，同放到小碗里</p>
+				<p>(3)再加糖、盐、味精、醋、香油，用浸过鸡的鲜汤将其调匀。</p>
+				<p>(4)把鸡拿出来剁小块，放入盘中，把调好的汁浇到鸡肉上即可。</p>
+				
+			</div>
+			<div class="image-with-text">
+				<img src="img/yue2.png" alt="广式烧鹅">
+				<p>广式烧鹅，属粤菜系，是广州传统的烧烤肉食，烧鹅源于烤鸭 。</p>
+				<p>食材：鹅1只、姜末、蒜蓉和葱末各适量。盐、糖、老抽、绍酒、玫瑰露酒、鸡精、五香粉、蜂蜜、白醋、肉骨汤2茶匙（10ml）。</p>
+				<p>(1)将鹅处理干净，用姜末、蒜蓉、葱末、盐、白糖、老抽、料酒、玫瑰露酒、鸡精、五香粉与肉骨汤搅拌均匀，制成调味汁，将鹅腌制30分钟；</p>
+				<p>(2)把姜末、蒜蓉和葱末等材料塞进鹅肚子，并将调味汁从肛门开口处灌入鹅的腹腔，再用针线将开口缝住，使味汁不致漏出；</p>
+				<P>(3)用蜂蜜、白醋调成的脆皮水均匀地涂满鹅表皮，烤箱预热至230℃，烤制35分钟</P>
+				<p>(4)改用180℃烤至表皮酥脆（约10到15分钟）</p>
+
+			</div>
+
+	</body>
+
+</html>
